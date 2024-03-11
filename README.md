@@ -1,4 +1,4 @@
-# Innodev 2k23
+# Innodev 2k24
 
 ## Job Searching Website
 
@@ -7,7 +7,7 @@
 
 - Sattwik Ranjan(https://github.com/sattwikranjan)
 - Manish Kumar(https://github.com/imaanish123)
-- Ranoo Kumari(https://github.com/Ranoo10/codeial)
+- Ranoo Kumari(https://github.com/Ranoo10)
 - Shubhangi(https://github.com/Shubhangi-108)
 
 ### Proposed Features:
