@@ -1,13 +1,13 @@
-import React from "react";
-import logo from "../assets/images/logo.svg";
+import { Logo } from "../components";
 import main from "../assets/images/main.svg";
 import Wrapper from "../assets/wrappers/LandingPage";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
     <Wrapper>
       <nav>
-        <img src={logo} alt="CareerNest" className="logo" />
+        <Logo />
       </nav>
       <div className="container page">
         <div className="info">
@@ -20,7 +20,9 @@ const Landing = () => {
             fit, kogi typewriter mukbang kickstarter fanny pack asymmetrical
             disrupt swag jean shorts blog marfa.
           </p>
-          <button className="btn btn-hero">Login/register</button>
+          <Link to="/register" className="btn btn-hero">
+            Login/register
+          </Link>
         </div>
         <img src={main} alt="CareerNest" className="img main-img" />
       </div>
