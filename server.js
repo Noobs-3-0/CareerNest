@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/v1", (req, res) => {
-  req.json({msg: 'Welcome!'});
+  res.json({msg: 'Welcome!'});
 });
 
 
