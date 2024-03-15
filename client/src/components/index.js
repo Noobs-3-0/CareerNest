@@ -5,4 +5,4 @@ import NavBar from "./Navbar";
 import BigSideBar from "./BigSideBar";
 import SmallSideBar from "./SmallSideBar";
 
-export { Logo, FormRow, Alert  , NavBar , SmallSideBar, BigSideBar};
+export { Logo, FormRow, Alert, NavBar, SmallSideBar, BigSideBar };
