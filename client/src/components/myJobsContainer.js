@@ -30,10 +30,7 @@ const MyJobsContainer = () =>{
                         return <Job key = {job._id}{...job}/>
                     })
                 }
-            </div>
-
-            
-            
+            </div>    
         </Wrapper>
     )
 }

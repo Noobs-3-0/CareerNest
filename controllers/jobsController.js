@@ -1,4 +1,5 @@
 import Job from '../models/Job.js'
+import User from '../models/User.js';
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError ,NotFoundError, UnAuthenticatedError} from "../errors/index.js";
 import checkPermissions from "../utils/checkPermissions.js";
@@ -66,6 +67,25 @@ const applyForJob = async (req, res) => {
   }
 };
 
+const getApplicants = async (req, res) => {
+  try {
+    const { id:jobId } = req.params;
+    const job = await Job.findById({_id:jobId}).populate({
+      path: 'applications',
+      select: 'name email location', // Select the fields you want to include
+      model: User
+    });
+
+    if (!job) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    res.json(job);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
+
 const updateJob = async (req, res) => {
   const {id:jobId }= req.params
   const {company, position}= req.body
@@ -100,4 +120,4 @@ const showStats = (req, res) => {
   res.send("Show Stats");
 };
 
-export { createJob, deleteJob, getAllJobs, updateJob, showStats,getMyJobs,applyForJob };
+export { createJob, deleteJob, getAllJobs, updateJob, showStats,getMyJobs,applyForJob,getApplicants };
