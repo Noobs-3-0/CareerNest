@@ -253,6 +253,37 @@ const AppProvider = ({ children }) => {
     clearAlert();
   }
 
+  const myJobs = async () =>{
+    let url = `/jobs/myJobs`
+    dispatch({type:GET_JOBS_BEGIN})
+    try{
+      const {data} = await authFetch(url);
+      const {jobs , totalJobs , numOfPages} = data ;
+      dispatch({
+        type:GET_JOBS_SUCCESS,
+        payload:{
+          jobs,
+          totalJobs,
+          numOfPages,
+        }
+      })
+    }
+    catch(error){
+      console.log(error.response)
+    }
+    clearAlert();
+  }
+  const applyForJob = async (jobId) => {
+    try {
+      await authFetch.post(`/jobs/${jobId}`);
+      dispatch({ type: 'SET_HAS_APPLIED', payload: true });
+      // If you need to trigger a re-render or navigate to another route after applying:
+      window.location.reload();
+      //setHasApplied(true); // Assume application was successful
+    } catch (error) {
+      console.error('Error applying for job:', error);
+    }
+  };
   const setEditJob =(id) =>{
     dispatch({type:SET_EDIT_JOB, payload: { id }});
   }
@@ -304,6 +335,8 @@ const AppProvider = ({ children }) => {
         setEditJob,
         deleteJob,
         editJob,
+        myJobs,
+        applyForJob,
       }}
     >
       {children}

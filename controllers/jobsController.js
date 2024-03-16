@@ -21,7 +21,7 @@ const deleteJob = async (req, res) => {
   if(!job){
     throw new NotFoundError(`no job with id :${jobId}`)
   }
-  checkPermissions(req.user, job.createdBy)
+  //checkPermissions(req.user, job.createdBy)
 
   await job.deleteOne()
 
@@ -30,8 +30,40 @@ const deleteJob = async (req, res) => {
 };
 
 const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({createdBy:req.user.userId})
+  const jobs = await Job.find({createdBy:{ $ne: req.user.userId }})
   res.status(StatusCodes.OK).json({jobs , totalJobs : jobs.length ,numOfPages: 1})
+};
+
+const getMyJobs = async (req, res) => {
+  const jobs = await Job.find({createdBy: req.user.userId })
+  res.status(StatusCodes.OK).json({jobs , totalJobs : jobs.length ,numOfPages: 1})
+};
+
+const applyForJob = async (req, res) => {
+  const { id:jobId } = req.params; // Assuming the job ID is passed as a URL parameter
+  const userId = req.user.userId; // Assuming you have middleware that adds the authenticated user's ID to req.user
+
+  try {
+    // First, check if the user has already applied for the job
+    const job = await Job.findById({_id:jobId});
+    if(!job){
+      throw new NotFoundError(`no job with id :${jobId}`)
+    }
+
+    // const hasAlreadyApplied = job.applications.some(application => application.equals(userId));
+    // if (hasAlreadyApplied) {
+    //   return res.status(400).json({ message: 'You have already applied for this job' });
+    // }
+
+    // Add the user's ID to the applications array
+    job.applications.push(userId);
+    await job.save();
+
+    res.status(200).json({ message: 'Application successful' ,job:job});
+  } catch (error) {
+    console.error('Error applying for job:', error);
+    res.status(500).json({ message: 'Failed to apply for job' });
+  }
 };
 
 const updateJob = async (req, res) => {
@@ -50,7 +82,7 @@ const updateJob = async (req, res) => {
 //  console.log(typeof req.user.userId)
 //  console.log(typeof job.createdBy)
 
- checkPermissions(req.user, job.createdBy)
+ //checkPermissions(req.user, job.createdBy)
  
  const updatedJob= await Job.findOneAndUpdate({ _id: jobId}, req.body, 
   {
@@ -68,4 +100,4 @@ const showStats = (req, res) => {
   res.send("Show Stats");
 };
 
-export { createJob, deleteJob, getAllJobs, updateJob, showStats };
+export { createJob, deleteJob, getAllJobs, updateJob, showStats,getMyJobs,applyForJob };

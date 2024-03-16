@@ -12,11 +12,11 @@ const JobSchema = new mongoose.Schema({
         required: [true, "Please provide position"],
         maxlength: 100,
     },
-    status: {
-        type: String,
-        enum: ['interview' , 'declined' , 'pending'],
-        default: 'pending'
-    },
+    // status: {
+    //     type: String,
+    //     enum: ['Applied' , 'declined' , 'pending'],
+    //     default: 'pending'
+    // },
     jobType: {
         type: String,
         enum: ['full-time' , 'part-time' , 'remote' , 'internship'],
@@ -31,7 +31,11 @@ const JobSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User',
         require: [true , 'Please Provide user']
-    }
+    },
+    applications: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    }],
 },
 {timestamps: true}
 )

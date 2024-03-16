@@ -11,16 +11,18 @@ const Job = ({
     _id, 
     position, 
     company,
-    jobLocation, 
+    jobLocation, createdBy,
     createdAt, 
     jobType, 
-    status}) =>{
+    applications}) =>{
 
-const {setEditJob, deleteJob} = useAppContext()
-
-
+const {user,setEditJob, deleteJob,applyForJob} = useAppContext()
+//const user = localStorage.getItem("user");
+const hasApplied = applications.includes(user._id);
+const isCreator = createdBy.toString() === user._id.toString();
     let date=moment(createdAt)
     date=date.format('MMM Do, YYYY')
+
     return (
       <Wrapper>
       <header>
@@ -35,17 +37,30 @@ const {setEditJob, deleteJob} = useAppContext()
             <JobInfo icon={<FaLocationArrow/>} text={jobLocation}/>
             <JobInfo icon={<FaCalendarAlt/>} text={date}/>
             <JobInfo icon={<FaBriefcase/>} text={jobType}/>
-            <div className={`status ${status}`}>{status}</div>
+            {/* <div className={`status ${status}`}>{status}</div> */}
+
         </div>
 
         <footer>
            <div className="actions">
-            <Link to='/add-job' className="btn edit-btn" onClick={()=>setEditJob(_id)}>
-                Edit
+            
+           {isCreator && (
+          <>
+            <Link to='/edit-job' className="btn edit-btn" onClick={() => setEditJob(_id)}>
+              Edit
             </Link>
-            <button type='button' className="btn delete-btn" onClick={()=>deleteJob(_id)}>
-                Delete
+            <button type='button' className="btn delete-btn" onClick={() => deleteJob(_id)}>
+              Delete
             </button>
+          </>
+        )}
+        <div>
+            {!isCreator && (
+          <button type='button' className="btn edit-btn" disabled={hasApplied} onClick={() => !hasApplied && applyForJob(_id)}>
+            {hasApplied ? 'Applied' : 'Apply'}
+          </button>
+        )}
+             </div> 
            </div> 
         </footer>
       </Wrapper>
