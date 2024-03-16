@@ -40,7 +40,7 @@ const {setEditJob, deleteJob} = useAppContext()
 
         <footer>
            <div className="actions">
-            <Link to='/add-job' className="btn edit-btn">
+            <Link to='/add-job' className="btn edit-btn" onClick={()=>setEditJob(_id)}>
                 Edit
             </Link>
             <button type='button' className="btn delete-btn" onClick={()=>deleteJob(_id)}>
