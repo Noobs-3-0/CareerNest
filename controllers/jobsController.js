@@ -16,8 +16,9 @@ const deleteJob = (req, res) => {
   res.send("Delete Job");
 };
 
-const getAllJobs = (req, res) => {
-  res.send("get all jobs details");
+const getAllJobs = async (req, res) => {
+  const jobs = await Job.find({createdBy:req.user.userId})
+  res.status(StatusCodes.OK).json({jobs , totalJobs : jobs.length ,numOfPages: 1})
 };
 
 const updateJob = (req, res) => {
