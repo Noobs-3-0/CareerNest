@@ -84,6 +84,7 @@ const Wrapper = styled.article`
   }
   .edit-btn,
   .delete-btn {
+    margin: 1rem;
     letter-spacing: var(--letterSpacing);
     cursor: pointer;
     height: 30px;

@@ -18,16 +18,25 @@ const Wrapper = styled.section`
     width: 100%;
   }
   .form-row {
+    max-width: 94%;
     margin-bottom: 0;
+    width:100%
   }
+
+  .form-select{
+
+    max-width: 100%;
+  }
+
   .form-center {
-    display: grid;
+    // display: grid;
     row-gap: 0.5rem;
   }
   .form-center button {
     align-self: end;
     height: 35px;
     margin-top: 1rem;
+    max-width: 96.5%;
   }
   .btn-container {
     display: grid;
@@ -35,8 +44,11 @@ const Wrapper = styled.section`
     column-gap: 1rem;
     align-self: flex-end;
     margin-top: 0.5rem;
+    max-width: 94%;
+
     button {
       height: 35px;
+      margin-top: 2px
     }
   }
   .clear-btn {
@@ -60,7 +72,9 @@ const Wrapper = styled.section`
       grid-template-columns: 1fr 1fr 1fr;
     }
     .form-center button {
-      margin-top: 0;
+      margin-top: 20px;
+      // background-color: green;
+      
     }
   }
 `
