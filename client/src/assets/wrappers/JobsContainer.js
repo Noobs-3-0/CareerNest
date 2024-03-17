@@ -11,14 +11,25 @@ const Wrapper = styled.section`
   .jobs {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 2rem;
+    gap: 2rem;
+    padding : 5px;
+    margin : 2px
+    
   }
   @media (min-width: 992px) {
     .jobs {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
+      margin : 2rem;
+      // padding : 1rem;
     }
+  }
+  .num-job-heading{
+    // position : absolute;
+    // left: 50%;
+    margin-left: 2.5rem;
+    // background-color : green;
   }
 `
 export default Wrapper
