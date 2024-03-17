@@ -40,7 +40,14 @@ const isCreator = createdBy.toString() === user._id.toString();
             {/* <div className={`status ${status}`}>{status}</div> */}
 
         </div>
-
+        {/* <div>
+      <h3>Applicants:</h3>
+      <ul>
+        {job.applications.map((user) => (
+          <li key={user._id}>{user.name} - {user.email}</li>
+        ))}
+      </ul>
+    </div> */}
         <footer>
            <div className="actions">
             

@@ -82,7 +82,7 @@ const getApplicants = async (req, res) => {
 
     res.json(job);
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    res.status(500).json({ message: 'Server error in geeting Applicants', error });
   }
 };
 
