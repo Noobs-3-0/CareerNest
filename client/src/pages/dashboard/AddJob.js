@@ -1,4 +1,4 @@
-import {FormRow ,FormRowSelect ,Alert} from '../../components'
+import {FormRow ,FormRowSelect ,Alert, MyJobsContainer} from '../../components'
 import {useAppContext} from '../../context/appContext'
 import Wrapper from "../../assets/wrappers/DashboardFormPage"
 
@@ -105,6 +105,11 @@ const AddJob = () => {
                 </div>
             </div>
         </form>
+        <div className='MyJob'>
+            <h2>My Jobs</h2>
+        <MyJobsContainer/>
+        </div>
+        
     </Wrapper>
 }
 export default AddJob
