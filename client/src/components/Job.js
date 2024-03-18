@@ -16,7 +16,8 @@ const Job = ({
     jobType, 
     applications}) =>{
 
-const {user,setEditJob, deleteJob,applyForJob} = useAppContext()
+const {user,setEditJob, deleteJob,applyForJob,applicant} = useAppContext()
+const data=applicant(_id)
 //const user = localStorage.getItem("user");
 const hasApplied = applications.includes(user._id);
 const isCreator = createdBy.toString() === user._id.toString();
@@ -40,14 +41,25 @@ const isCreator = createdBy.toString() === user._id.toString();
             {/* <div className={`status ${status}`}>{status}</div> */}
 
         </div>
-        {/* <div>
-      <h3>Applicants:</h3>
-      <ul>
-        {job.applications.map((user) => (
-          <li key={user._id}>{user.name} - {user.email}</li>
-        ))}
-      </ul>
-    </div> */}
+        <div>
+          {isCreator &&(
+            <div>
+            <h3>Applicant Details:</h3>
+            {data && data.length > 0? (
+        data.map(applicant => (
+          <div key={applicant._id}>
+            <p>Name: {applicant.name}</p>
+            <p>Email: {applicant.email}</p>
+            <p>Location: {applicant.location}</p>
+            <hr />
+          </div>
+        ))
+      ) : (
+        <p>No applicants found.</p>
+      )}
+          </div>
+          )}
+        </div>
         <footer>
            <div className="actions">
             

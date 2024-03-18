@@ -70,12 +70,12 @@ const AddJob = () => {
                 />
                 {/* job status */}
 
-                <FormRowSelect 
+                {/* <FormRowSelect 
                     name="status" 
                     value={status} 
                     handleChange={handleJobInput} 
                     list={statusOptions}
-                />
+                /> */}
 
                 {/* job type */}
 

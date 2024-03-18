@@ -8,7 +8,7 @@ const auth = async (req, res, next) => {
     throw new UnAuthenticatedError("Authentication Failed");
   }
   const token = authHeader.split(" ")[1];
-  console.log(token);
+  //console.log(token);
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     // attach the user to the job routes

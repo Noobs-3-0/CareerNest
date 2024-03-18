@@ -253,6 +253,16 @@ const AppProvider = ({ children }) => {
     clearAlert();
   }
 
+  const applicant=async(jobId)=>{
+    let url=`/jobs/${jobId}`
+    try {
+      const {data} = await authFetch.get(url)
+      console.log(data.applications)
+      return data.applications;
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const myJobs = async () =>{
     let url = `/jobs/myJobs`
     dispatch({type:GET_JOBS_BEGIN})
@@ -337,6 +347,7 @@ const AppProvider = ({ children }) => {
         editJob,
         myJobs,
         applyForJob,
+        applicant,
       }}
     >
       {children}
