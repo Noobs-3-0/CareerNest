@@ -362,7 +362,7 @@ button:disabled {
 }
 
 .CareerNestDiv{
-  box-shadow: 2px 2px 7px 1px #2cb1bc;
+  box-shadow: 2px 2px 7px 0px #2cb1bc;
   height: 50px;
   border-radius: 50%;
   padding: 9px;
@@ -373,6 +373,22 @@ button:disabled {
   color: #2cb1bc; 
   text-transform: uppercase; 
   font-size: 30px;
+  text-shadow: 1px 2px 1px #1C6EA4;
+
+}
+
+.CareerNestDivMain{
+  /* box-shadow: 2px 2px 7px 1px #2cb1bc; */
+  height: 50px;
+  border-radius: 50%;
+  /* padding: 9px; */
+  display: flex;
+  justify-content: center;
+  font-family: 'Brush Script MT';
+  font-weight: bold;
+  color: #2cb1bc; 
+  text-transform: uppercase; 
+  font-size: 40px;
   text-shadow: 1px 2px 2px #1C6EA4;
 
 }
@@ -416,4 +432,13 @@ button:disabled {
 .declined {
   background: #ffeeee;
   color: #d66a6a;
+}
+
+.main-img{
+  height: 440px;
+  width: 100%;
+}
+.logo-text{
+  color: #4cb9c3; 
+  font-weight: 600;
 }
