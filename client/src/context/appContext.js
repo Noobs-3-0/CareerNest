@@ -221,6 +221,7 @@ const AppProvider = ({ children }) => {
       })
       dispatch({type:CREATE_JOB_SUCCESS})
       dispatch({type:CLEAR_VALUES})
+      window.location.reload();
     }
     catch(error){
       if(error.response.status===401) return
@@ -321,6 +322,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type:DELETE_JOB_BEGIN})
     try{
       await authFetch.delete(`/jobs/${jobId}`)
+      window.location.reload();
     }catch(error){
       console.log(error.response)
       //logout

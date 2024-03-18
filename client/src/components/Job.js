@@ -65,7 +65,7 @@ const isCreator = createdBy.toString() === user._id.toString();
             
            {isCreator && (
           <>
-            <Link to='/edit-job' className="btn edit-btn" onClick={() => setEditJob(_id)}>
+            <Link to='/add-job' className="btn edit-btn" onClick={() => setEditJob(_id)}>
               Edit
             </Link>
             <button type='button' className="btn delete-btn" onClick={() => deleteJob(_id)}>
