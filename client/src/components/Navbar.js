@@ -8,12 +8,13 @@ const Navbar = () => {
   const { toggleSidebar, logoutUser, user } = useAppContext();
   return (
     <Wrapper>
+      {/* <Logo /> */}
       <div className="nav-center">
         <button type="button" className="toggle-btn" onClick={toggleSidebar}>
           <FaAlignLeft />
         </button>
         <div>
-          <Logo />
+          
           <h3 className="logo-text">dashboard</h3>
         </div>
         <div className="btn-container">

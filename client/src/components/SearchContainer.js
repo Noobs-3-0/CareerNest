@@ -1,7 +1,7 @@
 const SearchContainer = () =>{
     return (
         <h1>
-            Search component
+            {/* Search component */}
         </h1>
     )
 }
