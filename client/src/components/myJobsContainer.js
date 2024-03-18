@@ -23,7 +23,7 @@ const MyJobsContainer = () =>{
     }
     return (
         <Wrapper>
-            <h5>{totalJobs} job {jobs.length > 1 && 's'}</h5>
+            <h5 className="num-job-heading">{totalJobs} {jobs.length == 1 &&'job'}  {jobs.length > 1 &&'jobs'}</h5>
             <div className="jobs">
                 {
                     jobs.map((job) => {
