@@ -6,7 +6,7 @@ import {
   showStats,
   getMyJobs,
   applyForJob,
-  getApplicants,
+  getApplicants
 } from "../controllers/jobsController.js";
 
 import express from "express";
