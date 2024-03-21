@@ -1,4 +1,5 @@
 import moment from "moment";
+import React, { useEffect , useState } from 'react';
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt} from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useAppContext } from "../context/appContext";
@@ -16,9 +17,40 @@ const Job = ({
     jobType, 
     applications}) =>{
 
-const {user,setEditJob, deleteJob,applyForJob,applicant} = useAppContext()
-const data=applicant(_id)
-//const user = localStorage.getItem("user");
+const {user,setEditJob, deleteJob , applyForJob , applicant , applicantPromise} = useAppContext();
+
+// const [applicantData, setApplicantData] = useState([]);
+
+
+// applicant(_id)
+// .then(data => {
+//     // setApplicantData(data);
+//     console.log(data);
+// })
+// .catch(error => {
+//     console.error("Error fetching applicant data:", error);
+// });
+
+// const data = applicant(_id)
+// console.log("hello" , data);
+
+
+// applicantPromise(_id).then( data => {
+//   console.log(data);
+// })
+
+const [applicantData, setApplicantData] = useState([]);
+
+useEffect(() => {
+    applicantPromise(_id).then(data => {
+        console.log(data);
+        setApplicantData(data);
+    }).catch(error => {
+        console.error("Error fetching applicant data:", error);
+    });
+}, [_id]);
+
+
 const hasApplied = applications.includes(user._id);
 const isCreator = createdBy.toString() === user._id.toString();
     let date=moment(createdAt)
@@ -41,7 +73,7 @@ const isCreator = createdBy.toString() === user._id.toString();
             {/* <div className={`status ${status}`}>{status}</div> */}
 
         </div>
-        <div>
+        {/* <div>
           {isCreator &&(
             <div>
             <h3>Applicant Details:</h3>
@@ -59,7 +91,27 @@ const isCreator = createdBy.toString() === user._id.toString();
       )}
           </div>
           )}
+        </div> */}
+
+        <div>
+            {isCreator && (
+                <div className="main-applicant-div">
+                    <h3>Applicant Details:</h3>
+                    {applicantData && applicantData.length > 0 ? (
+                        applicantData.map(applicant => (
+                            <div key={applicant._id} className="applicant-detail">
+                                <p><b>Name: </b> {applicant.name}</p>
+                                <p><b>Email: </b>{applicant.email}</p>
+                                <hr />
+                            </div>
+                        ))
+                    ) : (
+                        <p>No applicants found.</p>
+                    )}
+                </div>
+            )}
         </div>
+
         <footer>
            <div className="actions">
             

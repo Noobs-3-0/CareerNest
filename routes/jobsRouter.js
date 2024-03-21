@@ -15,7 +15,8 @@ const router = express.Router();
 router.route("/").post(createJob).get(getAllJobs);
 router.route("/stats").get(showStats);
 router.route("/myJobs").get(getMyJobs);  
-router.route("/:id").delete(deleteJob).patch(updateJob).post(applyForJob).get(getApplicants);
+router.route("/:id").delete(deleteJob).patch(updateJob).post(applyForJob)
+router.route("/applicant/:id").get(getApplicants);
 
 // router.route("/applicants").get(getApplicants);
 //router.route("/:jobId/apply").post(applyForJob)

@@ -29,6 +29,8 @@ import {
   EDIT_JOB_BEGIN,
   EDIT_JOB_SUCCESS,
   EDIT_JOB_ERROR,
+  GET_APPLICANT_BEGIN,
+  GET_APPLICANT_SUCCESS,
 } from "./actions";
 import reducer from "./reducer";
 
@@ -238,6 +240,7 @@ const AppProvider = ({ children }) => {
     dispatch({type:GET_JOBS_BEGIN})
     try{
       const {data} = await authFetch(url);
+      // console.log("shubhi" ,data);
       const {jobs , totalJobs , numOfPages} = data ;
       dispatch({
         type:GET_JOBS_SUCCESS,
@@ -254,16 +257,28 @@ const AppProvider = ({ children }) => {
     clearAlert();
   }
 
-  const applicant=async(jobId)=>{
-    let url=`/jobs/${jobId}`
+  const applicant=  async (jobId) =>{
+    let url=`/jobs/applicant/${jobId}`
     try {
-      const {data} = await authFetch.get(url)
-      console.log(data.applications)
+      const {data} = await authFetch(url)
+      // console.log(data);
       return data.applications;
+
+
     } catch (error) {
       console.log(error)
     }
   }
+
+  const applicantPromise = (_id) => {
+    return new Promise((resolve, reject) => {
+      applicant(_id)
+        .then(data => resolve(data))
+        .catch(error => reject(error));
+    });
+  };
+  // const me = applicant(_id)
+
   const myJobs = async () =>{
     let url = `/jobs/myJobs`
     dispatch({type:GET_JOBS_BEGIN})
@@ -312,7 +327,7 @@ const AppProvider = ({ children }) => {
       dispatch({ type:EDIT_JOB_SUCCESS })
      dispatch({type:CLEAR_VALUES})
     } catch (error) {
-      if(error.response.status == 401) return 
+      if(error.response.status === 401) return ;
         dispatch({type:EDIT_JOB_ERROR , payload:{msg:error.response.data.msg}})
       
     }
@@ -350,6 +365,7 @@ const AppProvider = ({ children }) => {
         myJobs,
         applyForJob,
         applicant,
+        applicantPromise,
       }}
     >
       {children}

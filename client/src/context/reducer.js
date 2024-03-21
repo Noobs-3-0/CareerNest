@@ -27,6 +27,9 @@ import {
   EDIT_JOB_BEGIN,
   EDIT_JOB_SUCCESS,
   EDIT_JOB_ERROR,
+  GET_APPLICANT_BEGIN,
+  GET_APPLICANT_SUCCESS
+
 } from "./actions";
 import { initialState } from "./appContext";
 const reducer = (state, action) => {
@@ -281,6 +284,28 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     };
   }
+
+
+  if (action.type === GET_APPLICANT_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    
+    };
+  }
+  if (action.type === GET_APPLICANT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: true,
+      showAlert: true,
+      // alertType: "success",
+      application : action.payload.application
+      // alertText: 'Job Updated',
+    };
+  }
+
+
+
 
   throw new Error(`no such action :${action.type}`);
 };
