@@ -43,6 +43,8 @@ const getMyJobs = async (req, res) => {
 const applyForJob = async (req, res) => {
   const { id:jobId } = req.params; // Assuming the job ID is passed as a URL parameter
   const userId = req.user.userId; // Assuming you have middleware that adds the authenticated user's ID to req.user
+  const me = await User.findById(userId);
+  console.log(me);
 
   try {
     // First, check if the user has already applied for the job
@@ -55,6 +57,7 @@ const applyForJob = async (req, res) => {
     // if (hasAlreadyApplied) {
     //   return res.status(400).json({ message: 'You have already applied for this job' });
     // }
+   
 
     // Add the user's ID to the applications array
     job.applications.push(userId);
@@ -70,6 +73,7 @@ const applyForJob = async (req, res) => {
 const getApplicants = async (req, res) => {
   try {
     const { id:jobId } = req.params;
+    // console.log('req.params' , req.params , "id:jobId" , jobId);
     const job = await Job.findById({_id:jobId}).populate({
       path: 'applications',
       select: 'name email location', // Select the fields you want to include

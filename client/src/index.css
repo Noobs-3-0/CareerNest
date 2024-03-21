@@ -442,3 +442,17 @@ button:disabled {
   color: #4cb9c3; 
   font-weight: 600;
 }
+.applicant-detail {
+  background-color: #edf5f6;
+  padding: 0px;
+}
+
+.applicant-detail p{
+  margin: 0px;
+  
+}
+.main-applicant-div{
+  padding: 0;
+  margin-top: 4px;
+  margin-left: 3px;
+}
