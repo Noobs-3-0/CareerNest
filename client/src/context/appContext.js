@@ -60,6 +60,11 @@ const initialState = {
   totalJobs: 0,
   numOfPages: 1,
   page: 1,
+  search:'',
+  searchStatus:'all',
+  searchType:'all',
+  sort:'latest',
+  sortOptions:['latest' , 'oldest' , 'a-z' , 'z-a'],
 };
 const AppContext = React.createContext();
 
@@ -236,7 +241,11 @@ const AppProvider = ({ children }) => {
   }
 
   const getJobs = async () =>{
-    let url = `/jobs`
+    const {search,searchStatus,searchType,sort}=state
+    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`
+    if(search){
+      url = url +`&search=${search}`
+    }
     dispatch({type:GET_JOBS_BEGIN})
     try{
       const {data} = await authFetch(url);
@@ -342,6 +351,9 @@ const AppProvider = ({ children }) => {
       console.log(error.response)
       //logout
     }
+  }
+  const clearFilters = () =>{
+   console.log();
   }
 
   return (
