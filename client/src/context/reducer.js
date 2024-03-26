@@ -28,7 +28,8 @@ import {
   EDIT_JOB_SUCCESS,
   EDIT_JOB_ERROR,
   GET_APPLICANT_BEGIN,
-  GET_APPLICANT_SUCCESS
+  GET_APPLICANT_SUCCESS,
+  CLEAR_FILTERS,
 
 } from "./actions";
 import { initialState } from "./appContext";
@@ -302,6 +303,15 @@ const reducer = (state, action) => {
       application : action.payload.application
       // alertText: 'Job Updated',
     };
+  }
+  if(action.type === CLEAR_FILTERS){
+    return {
+      ...state,
+      search:'',
+      searchStatus:'all',
+      searchType:'all',
+      sort:'latest',
+    }
   }
 
 
