@@ -14,6 +14,9 @@ const SearchContainer = () =>{
             return;
             handleChange({name:e.target.name,value:e.target.value})
         }
+        const handleSubmit=(e)=>{
+            e.preventDefault()
+        }
     return (
        <Wrapper>
         <form className='form'>
@@ -27,13 +30,17 @@ const SearchContainer = () =>{
                 handleChange={handleSearch}>
                 </FormRow>
 
-                <FormRow
-                type='select'
+                <FormRowSelect
                 name='sort'
                 value={sort}
                 handleChange={handleSearch}
                 list={sortOptions} />
             </div>
+            <button className='btn btn-bloack btn-danger'
+             disabled={isLoading}
+             onClick={handleSubmit}
+             >
+             Clear </button>
         </form>
        </Wrapper>
     )

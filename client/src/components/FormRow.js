@@ -1,23 +1,18 @@
-const FormRow = ({ type, name, value, handleChange, labelText,list }) => {
-  if (type === 'text') {
-    return (
+const FormRow = ({ type, name, value, handleChange, labelText }) => {
+  return (
+    <div className='form-row'>
+      <label htmlFor={name} className='form-label'>
+        {labelText || name}
+      </label>
       <input
-        type="text"
-        name={name}
+        type={type}
         value={value}
+        name={name}
         onChange={handleChange}
+        className='form-input'
       />
-    );
-  } else if (type === 'select') {
-    return (
-      <select name={name} value={value} onChange={handleChange}>
-        {list.map((option, index) => (
-          <option key={index} value={option}>{option}</option>
-        ))}
-      </select>
-    );
-  }
-};
+    </div>
+  )
+}
 
-export default FormRow;
-
+export default FormRow

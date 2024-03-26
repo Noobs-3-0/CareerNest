@@ -31,6 +31,7 @@ import {
   EDIT_JOB_ERROR,
   GET_APPLICANT_BEGIN,
   GET_APPLICANT_SUCCESS,
+  CLEAR_FILTERS,
 } from "./actions";
 import reducer from "./reducer";
 
@@ -353,7 +354,7 @@ const AppProvider = ({ children }) => {
     }
   }
   const clearFilters = () =>{
-   console.log();
+   dispatch({type : CLEAR_FILTERS})
   }
 
   return (
