@@ -71,7 +71,11 @@ const Profile = () => {
           <button className="btn btn-block" type="submit" disabled={isLoading}>
             {isLoading ? "Please Wait..." : "save changes"}
           </button>
-          
+          {resume && (
+            <button onClick={() => window.open(`http://localhost:5000/uploads/${user?.resume}`)}>
+              Show PDF
+            </button>
+          )}
         </div>
       </form>
     </Wrapper>
