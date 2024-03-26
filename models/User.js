@@ -38,6 +38,9 @@ const UserSchema = new mongoose.Schema({
     maxlength: 20,
     default: "my city",
   },
+  resume: {
+    type: String,
+  },
 });
 
 UserSchema.pre("save", async function () {
@@ -50,7 +53,7 @@ UserSchema.pre("save", async function () {
 
 UserSchema.methods.createJWT = function () {
   return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {
-    expiresIn: '1d',
+    expiresIn: "1d",
   });
 };
 
