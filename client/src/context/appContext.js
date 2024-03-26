@@ -378,6 +378,7 @@ const AppProvider = ({ children }) => {
         applyForJob,
         applicant,
         applicantPromise,
+        clearFilters,
       }}
     >
       {children}

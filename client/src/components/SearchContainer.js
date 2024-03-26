@@ -4,14 +4,11 @@ import Wrapper from '../assets/wrappers/SearchContainer';
 const SearchContainer = () =>{
     const {isLoading,
         search,
-        searchStatus,
-        searchType,
         sort,
         sortOptions,
         handleChange,
         clearFilters,
-        jotTypeOptions,
-        statusOptions}=useAppContext()
+        }=useAppContext()
         const handleSearch= (e)=>{
             if(isLoading)
             return;
@@ -31,6 +28,7 @@ const SearchContainer = () =>{
                 </FormRow>
 
                 <FormRow
+                type='select'
                 name='sort'
                 value={sort}
                 handleChange={handleSearch}
