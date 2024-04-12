@@ -46,3 +46,35 @@ The backend is implemented using <b>NodeJS</b> and <b>ExpressJS</b> it provide a
 <b>Git</b> allows us to track changes to our codebase and collaborate with our team members.<b>GitHub</b>, as a hosting platform for Git repositories, facilitates collaboration, code reviews, and quicker project management.
 
 <b>Postman</b> simplifies our process of designing, testing, and documenting APIs and in our job searching website project, Postman is used to interact with the backend API endpoints, test various functionalities, and ensure that the API behaves as expected.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Noobs-3-0/CareerNest.git
+   ```
+2. Install dependencies:
+
+   - Install the required dependencies:
+     ```bash
+     npm install
+     ```
+     ```bash
+     cd client
+     ```
+     ```bash
+     npm install
+     ```
+
+3. Start the development server:
+
+   - Navigate to the project directory:
+     ```bash
+     cd ..
+     ```
+   - Run the development server
+     ```bash
+     npm run dev
+     ```
+
+4. Open http://localhost:3000 in your browser to view the application.
