@@ -6,9 +6,19 @@ import "express-async-errors";
 import morgan from "morgan";
 import cors from "cors";
 app.use(cors());
+import path from "path";
+import { fileURLToPath } from "url";
 //db authentication
 import connectDB from "./db/connect.js";
 
+// Serve static files from the React app
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 //routers
 import authRouter from "./routes/authRoutes.js";
 import jobsRouter from "./routes/jobsRouter.js";
